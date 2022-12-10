@@ -11,7 +11,7 @@
 - [Qual foi a nossa solução](#-Qual-foi-a-nossa-solução)
 - [Ferramentas utilizadas](#-Ferramentas-utilizadas)
 - [Como executar](#-Como-executar)
-- [Como executar](#-Licença)
+- [Licença](#-Licença)
 - [BackEnd](./backEnd/)
 - [FrontEnd](./backEnd/)
 
