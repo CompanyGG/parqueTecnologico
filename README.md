@@ -13,7 +13,7 @@
 - [Como executar](#-Como-executar)
 - [Licença](#-Licença)
 - [BackEnd](./backEnd/)
-- [FrontEnd](./backEnd/)
+- [FrontEnd](./frontEnd/)
 
 
 <!-- Vamos colocar um GIF -->
