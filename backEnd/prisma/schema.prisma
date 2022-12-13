@@ -19,7 +19,7 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
-model Solicitacao {
+model Reserva {
   id         String   @id @default(uuid())
   confirmado Boolean? @default(false)
   createdAt  DateTime @default(now())
