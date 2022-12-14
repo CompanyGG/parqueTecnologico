@@ -6,7 +6,11 @@ import {
   Patch,
   Param,
   Delete,
-  ParseIntPipe,
+  InternalServerErrorException,
+  ParseUUIDPipe,
+  NotFoundException,
+  HttpStatus,
+  HttpCode,
 } from '@nestjs/common';
 import { ReservaService } from './reserva.service';
 import { CreateReservaDto } from './dto/create-reserva.dto';
@@ -18,29 +22,42 @@ export class ReservaController {
 
   @Post()
   public async create(@Body() createReservaDto: CreateReservaDto) {
-    return this.__reservaService.create(createReservaDto);
+    return await this.__reservaService.create(createReservaDto).catch((e) => {
+      throw new InternalServerErrorException(e.message);
+    });
   }
 
   @Get()
   public async findAll() {
-    return this.__reservaService.findAll();
+    return await this.__reservaService.findAll().catch((e) => {
+      throw new InternalServerErrorException(e.message);
+    });
   }
 
   @Get(':id')
-  public async findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.__reservaService.findOne(id);
+  public async findOne(@Param('id', ParseUUIDPipe) id: string) {
+    return await this.__reservaService.findOne(id).catch((e) => {
+      throw new NotFoundException(e.message);
+    });
   }
 
   @Patch(':id')
   public async update(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() updateReservaDto: UpdateReservaDto,
   ) {
-    return this.__reservaService.update(id, updateReservaDto);
+    return await this.__reservaService
+      .update(id, updateReservaDto)
+      .catch((e) => {
+        throw new NotFoundException(e.message);
+      });
   }
 
   @Delete(':id')
-  public async remove(@Param('id', ParseIntPipe) id: number) {
-    return this.__reservaService.remove(id);
+  @HttpCode(HttpStatus.NO_CONTENT)
+  public async remove(@Param('id', ParseUUIDPipe) id: string) {
+    return await this.__reservaService.remove(id).catch((e) => {
+      throw new NotFoundException(e.message);
+    });
   }
 }
