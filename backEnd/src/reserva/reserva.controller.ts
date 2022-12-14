@@ -1,20 +1,20 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
-  InternalServerErrorException,
-  ParseUUIDPipe,
-  NotFoundException,
-  HttpStatus,
+  Get,
   HttpCode,
+  HttpStatus,
+  InternalServerErrorException,
+  NotFoundException,
+  Param,
+  ParseUUIDPipe,
+  Patch,
+  Post,
 } from '@nestjs/common';
-import { ReservaService } from './reserva.service';
 import { CreateReservaDto } from './dto/create-reserva.dto';
 import { UpdateReservaDto } from './dto/update-reserva.dto';
+import { ReservaService } from './reserva.service';
 
 @Controller('reserva')
 export class ReservaController {
